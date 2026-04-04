@@ -1,0 +1,41 @@
+[project]
+name = "blob-sync-service"
+version = "0.1.0"
+description = "Async daemon that watches a local folder and uploads media files to Azure Blob Storage using chunked block uploads with resumable state tracking."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.9",
+    "aiosqlite>=0.20",
+    "watchfiles>=0.21",
+    "pyyaml>=6.0",
+    "azure-storage-blob>=12.28.0",
+    "azure-core>=1.39.0",
+    "azure-identity>=1.25.3",
+    "load-dotenv>=0.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "uvicorn>=0.29",
+    "fastapi>=0.111",
+    "pre-commit>=4.0",
+]
+
+[tool.black]
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 100
+extend-ignore = ["E203", "W503"]
+
+[project.scripts]
+blob-sync = "blob_sync_service.__main__:main"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

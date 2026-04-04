@@ -1,0 +1,16 @@
+[Unit]
+Description=Blob Sync Service — chunked upload agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=<User>
+WorkingDirectory=<WorkingDirectory>
+EnvironmentFile=-/etc/blob-sync/env
+ExecStart=/path/to/blob-sync-service/.venv/bin/python -m blob_sync_service --config /path/to/config.yaml
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,4 @@
+watch_dir: /path/to/watch
+storage_account_url: https://<your-storage-account>.blob.core.windows.net
+container_name: <your-container-name>
+db_path: /path/to/db.sqlite
